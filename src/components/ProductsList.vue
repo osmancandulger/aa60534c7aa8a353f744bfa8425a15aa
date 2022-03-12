@@ -111,14 +111,15 @@ export default class ProductsList extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
   position: relative;
   width: 100%;
-  .product + .product {
-    margin-left: 20px;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(301px, 1fr));
+  place-items: center;
+  display: grid;
+  grid-gap: 5px;
 }
 h3 {
   margin: 40px 0 0;
@@ -137,7 +138,11 @@ a {
 .total-indicator {
   position: absolute;
   right: 5%;
-  top: 2%;
+  top: 1.5%;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+
   span {
     font-weight: 800;
   }
