@@ -22,8 +22,8 @@ app.use(
 );
 // app.use(cors());
 
-app.use("/api", require("./routes/products").default);
-app.listen(process.env.PORT);
+// app.use("/api", require("./routes/products").default);
+// app.listen(process.env.PORT);
 module.exports = {
   path: "/api",
   handler: app,

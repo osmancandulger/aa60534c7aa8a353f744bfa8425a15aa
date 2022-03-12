@@ -1,33 +1,18 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <ProductsList />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
-import { getProducts } from "./repos/ProductsRepo";
+import ProductsList from "./components/ProductsList.vue";
 @Component({
   components: {
-    HelloWorld,
+    ProductsList,
   },
 })
-export default class App extends Vue {
-  mounted() {
-    this.getData();
-  }
-
-  async getData() {
-    try {
-      const response = await getProducts();
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">
