@@ -8,12 +8,8 @@
           <p class="product__price">{{ data.variants[0].price }}</p>
         </div>
         <div class="action-section">
-          <img
-            class="detail-icon"
-            src="../assets/icons/detail.png"
-            alt="See Details!"
-          />
-          <!-- <span>See it!</span> -->
+          <div class="detail-icon"><span>i</span></div>
+          <!-- <span>See details!</span> -->
         </div>
       </div>
     </li>
@@ -32,7 +28,7 @@ export default class ProductsList extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .item {
-  border: 2px solid blue;
+  border: 2px solid rgb(138, 138, 138);
   border-radius: 10px;
   width: 300px;
   height: 400px;
@@ -52,6 +48,10 @@ export default class ProductsList extends Vue {
 
   .desc-section {
     display: flex;
+    background: #1d3557;
+    p {
+      color: #f1faee;
+    }
     .action-section {
       padding: 30px 33px;
     }
@@ -60,12 +60,22 @@ export default class ProductsList extends Vue {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 20px 15px;
+    padding: 20px 15px;
     flex: 1;
+    border-right: 2px solid #f1faeec7;
   }
   .detail-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 35px;
     height: 35px;
+    border: 1px solid white;
+    border-radius: 50%;
+    color: white;
+    span {
+      font-size: 22px;
+    }
     transition: transform 0.4s ease-in;
     cursor: pointer;
     &:hover {
