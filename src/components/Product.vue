@@ -1,7 +1,37 @@
 <template>
   <div id="app">
     <li class="item" v-if="data">
-      <img class="product__img" :src="data.image.src" :alt="data.title" />
+      <div class="img-wrapper">
+        <button
+          v-if="data.images.length > 1"
+          class="carousel-handler carousel-prev"
+          :class="activeIndex == 0 ? 'carousel-arrow-disabled' : ''"
+          role="button"
+          @click="activeIndex > 0 ? handleCarousel('prev') : ''"
+        >
+          &#60;
+        </button>
+        <img
+          class="product__img"
+          :src="data.images[activeIndex].src || data.image.src"
+          :alt="data.title"
+        />
+        <button
+          v-if="data.images.length > 1"
+          class="carousel-handler carousel-next"
+          :class="
+            activeIndex == data.images.length - 1
+              ? 'carousel-arrow-disabled'
+              : ''
+          "
+          role="button"
+          @click="
+            activeIndex < data.images.length - 1 ? handleCarousel('next') : ''
+          "
+        >
+          &#62;
+        </button>
+      </div>
       <div class="desc-section">
         <div class="product-descriptions">
           <p class="product__title">{{ data.title || "No Title Available" }}</p>
@@ -23,7 +53,20 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class ProductsList extends Vue {
-  @Prop() private data!: object;
+  @Prop() private data!: any;
+  activeIndex = 0;
+  /**
+   * @descriptions Handle with pagination actions to set pagination's active index
+   * @param {string}: action action's type
+   */
+  handleCarousel(action: string) {
+    action == "prev" ? (this.activeIndex -= 1) : (this.activeIndex += 1);
+    action == "prev-first"
+      ? (this.activeIndex = 0)
+      : action == "next-last"
+      ? (this.activeIndex = this.data.images.length - 1)
+      : "";
+  }
 }
 </script>
 
@@ -39,7 +82,7 @@ export default class ProductsList extends Vue {
   box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
   .product__img {
     width: 100%;
-    height: 75%;
+    height: 90%;
   }
   .product__title {
     // font-size: 20px;
@@ -88,5 +131,19 @@ export default class ProductsList extends Vue {
       transform: scale(1.1);
     }
   }
+}
+.img-wrapper {
+  display: flex;
+  position: relative;
+  height: 300px;
+  align-items: center;
+}
+.carousel-handler {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  background: #efefef;
+  color: #939393;
 }
 </style>
