@@ -15,6 +15,7 @@
           class="product__img"
           :src="data.images[activeIndex].src || data.image.src"
           :alt="data.title"
+          @click="isDetailOpen = !isDetailOpen"
         />
         <button
           v-if="data.images.length > 1"
@@ -32,15 +33,49 @@
           &#62;
         </button>
       </div>
-      <div class="desc-section">
-        <div class="product-descriptions">
-          <p class="product__title">{{ data.title || "No Title Available" }}</p>
+      <div class="desc-section" :class="[{ 'detail-active': isDetailOpen }]">
+        <div
+          class="product-descriptions"
+          :style="!isDetailOpen ? 'border-right: 2px solid #f1faeec7' : ''"
+        >
+          <p class="product__title">
+            {{ data.title || "No Title Available" }}
+          </p>
           <p class="product__price">
             {{ data.variants[0].price || "No Price Available" }}
           </p>
+          <template v-if="isDetailOpen"
+            ><p>
+              <span class="detail-key"> Product type:</span>
+              {{ data.product_type }}
+            </p>
+            <template v-if="data.options">
+              <p
+                class="product-detail-text"
+                v-for="(item, index) in data.options"
+                :key="index"
+              >
+                <span class="detail-key"> {{ item.name }}:</span>
+                <!-- {{ data.options[0].values[0] || "No Size Available" }} -->
+                <span
+                  class="product-detail-span"
+                  v-for="(value, index) in item.values"
+                  :key="index"
+                >
+                  {{ value }}</span
+                >
+              </p>
+            </template>
+          </template>
         </div>
-        <div class="action-section">
-          <div class="detail-icon"><span>i</span></div>
+        <div :class="!isDetailOpen ? 'action-section' : ''">
+          <div
+            class="detail-icon"
+            :class="isDetailOpen ? 'detail-open' : ''"
+            @click="isDetailOpen = !isDetailOpen"
+          >
+            <span>{{ isDetailOpen ? "X" : "i" }}</span>
+          </div>
           <!-- <span>See details!</span> -->
         </div>
       </div>
@@ -55,6 +90,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class ProductsList extends Vue {
   @Prop() private data!: any;
   activeIndex = 0;
+  isDetailOpen = false;
   /**
    * @descriptions Handle with pagination actions to set pagination's active index
    * @param {string}: action action's type
@@ -83,6 +119,7 @@ export default class ProductsList extends Vue {
   .product__img {
     width: 100%;
     height: 90%;
+    cursor: pointer;
   }
   .product__title {
     // font-size: 20px;
@@ -90,14 +127,26 @@ export default class ProductsList extends Vue {
     font-size: calc(0.55em + 1vmin);
     font-weight: 400;
     text-align: left;
+    &::before {
+      content: "Title:";
+      font-weight: 800;
+    }
   }
   .product__price {
     font-weight: 800;
+    &::before {
+      content: "Price: ";
+    }
   }
 
   .desc-section {
     display: flex;
     background: #1d3557;
+    height: 100%;
+    transition: transform 0.3s ease-in;
+    overflow: hidden;
+    text-align: left;
+
     p {
       color: #f1faee;
     }
@@ -111,7 +160,6 @@ export default class ProductsList extends Vue {
     align-items: flex-start;
     padding: 20px 15px;
     flex: 1;
-    border-right: 2px solid #f1faeec7;
   }
   .detail-icon {
     display: flex;
@@ -145,5 +193,23 @@ export default class ProductsList extends Vue {
   border: none;
   background: #efefef;
   color: #939393;
+}
+.detail-active {
+  transform: translateY(-300px);
+}
+// .product-detail-text {
+//   display: flex;
+// }
+.product-detail-span {
+  position: relative;
+}
+.product-detail-span + .product-detail-span {
+  left: 0.4px;
+}
+.detail-open {
+  margin: 12px;
+}
+.detail-key {
+  font-weight: 800;
 }
 </style>
