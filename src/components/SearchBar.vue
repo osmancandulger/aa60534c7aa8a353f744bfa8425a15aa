@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <input type="text" name="" id="" v-model="searchKey" @input="emitter" />
+    <input
+      type="text"
+      name="search"
+      id="search"
+      placeholder="Enter your search key here!"
+      v-model="searchKey"
+      @input="emitter"
+    />
   </div>
 </template>
 
@@ -20,31 +27,11 @@ export default class ProductsList extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.pagination-container {
-  margin-top: 10px;
-  li:hover {
-    color: rgba(0, 0, 0, 0.349);
-  }
-  button {
-    border: none;
-    border-radius: 15px;
-  }
-  .pagination-prev {
-  }
-  cursor: pointer;
-  .pagination-active {
-    font-weight: 800;
-    transition: transform 0.3s ease;
-    transform: scale(1.2);
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  .pagination-arrow-disabled {
-    color: rgba(0, 0, 0, 0.159);
-    cursor: not-allowed;
-  }
+#search {
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid gray;
+  width: 45%;
+  box-shadow: 0px 0px 20px 0px rgb(221 221 221);
 }
 </style>

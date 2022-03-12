@@ -58,11 +58,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Watch, Vue } from "vue-property-decorator";
 
 @Component
 export default class ProductsList extends Vue {
   @Prop() private paginationSize!: number;
+  @Prop() private isFlush!: boolean;
   activeIndex = 0;
 
   /**
@@ -80,6 +81,12 @@ export default class ProductsList extends Vue {
   }
   emitter() {
     this.$emit("paginationChange", this.activeIndex);
+  }
+
+  @Watch("isFlush")
+  watchFlush() {
+    this.activeIndex = 0;
+    this.emitter();
   }
 }
 </script>

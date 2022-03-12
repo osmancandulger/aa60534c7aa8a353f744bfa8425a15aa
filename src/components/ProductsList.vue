@@ -7,16 +7,26 @@
         <span>{{ listSize }}</span
         >/{{ productsData.length }}
       </p>
-      <Product
-        class="product"
-        v-for="item in productsForList"
-        :key="item.id"
-        :data="item"
-      />
+      <template v-if="isLoading">
+        <h4 class="no-content">Loading..</h4></template
+      >
+      <template v-else>
+        <template v-if="productsForList.length > 0">
+          <Product
+            v-for="item in productsForList"
+            :key="item.id"
+            :data="item"
+          />
+        </template>
+        <template v-if="productsForList.length == 0">
+          <h4 class="no-content">No Product Found!</h4></template
+        >
+      </template>
     </div>
     <Paginator
       v-if="productsData.length > 10"
       :pagination-size="paginationSize"
+      :isFlush="isFlush"
       @paginationChange="updateValue"
     />
   </div>
@@ -45,6 +55,9 @@ export default class ProductsList extends Vue {
   paginationSize = 0;
   perPage = 10;
   listSize = 0;
+  isLoading = true;
+  noContent = false;
+  isFlush = false;
   /**
    * @description Created lifecycle hook
    */
@@ -60,7 +73,9 @@ export default class ProductsList extends Vue {
       const response = await getProducts();
       this.productsData = response.data.products;
       this.productsDataCopy = this.productsData;
+      this.isLoading = false;
     } catch (error) {
+      this.noContent = true;
       console.error(error);
     }
   }
@@ -80,6 +95,7 @@ export default class ProductsList extends Vue {
         item.title.toLowerCase().includes(key.toLowerCase())
       );
     } else {
+      this.isFlush = !this.isFlush;
       this.productsData = Object.assign([], this.productsDataCopy);
     }
   }
@@ -163,5 +179,9 @@ a {
   span {
     font-weight: 800;
   }
+}
+.no-content {
+  margin-top: 20%;
+  font-weight: 800;
 }
 </style>
