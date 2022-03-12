@@ -43,10 +43,17 @@ export default class ProductsList extends Vue {
   activeIndex = 0;
   paginationSize = 0;
   perPage = 10;
+
+  /**
+   * @description Created lifecycle hook
+   */
   created() {
     this.getData();
   }
 
+  /**
+   * @description Get product data from api
+   */
   async getData() {
     try {
       const response = await getProducts();
@@ -55,8 +62,21 @@ export default class ProductsList extends Vue {
       console.error(error);
     }
   }
+
+  /**
+   * @description Get emitted event from child component
+   */
   updateValue(activeIndex: any) {
     this.activeIndex = activeIndex;
+    this.scrollTop();
+  }
+
+  /**
+   * @description Scroll top after user change the page
+   */
+  scrollTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   /**
