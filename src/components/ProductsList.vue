@@ -3,12 +3,20 @@
     <div class="container">
       <Product
         class="product"
-        v-for="item in productsData"
+        v-for="item in productsForList"
         :key="item.id"
         :data="item"
       />
     </div>
     <div class="pagination-container">
+      <button
+        class="pagination-prev"
+        :class="activeIndex == 0 ? 'pagination-arrow-disabled' : ''"
+        role="button"
+        @click="activeIndex > 0 ? handlePagination('prev-first') : ''"
+      >
+        &#60;&#60;
+      </button>
       <button
         class="pagination-prev"
         :class="activeIndex == 0 ? 'pagination-arrow-disabled' : ''"
@@ -38,6 +46,18 @@
       >
         &#62;
       </button>
+      <button
+        class="pagination-next"
+        :class="
+          activeIndex == paginationSize - 1 ? 'pagination-arrow-disabled' : ''
+        "
+        role="button"
+        @click="
+          activeIndex < paginationSize - 1 ? handlePagination('next-last') : ''
+        "
+      >
+        &#62;&#62;
+      </button>
     </div>
   </div>
 </template>
@@ -58,7 +78,8 @@ export default class ProductsList extends Vue {
   number = 2;
   productsData: any = [];
   activeIndex = 0;
-  paginationSize = 10;
+  paginationSize = 0;
+  perPage = 10;
   created() {
     this.getData();
   }
@@ -72,8 +93,31 @@ export default class ProductsList extends Vue {
     }
   }
 
+  /**
+   * @descriptions Handle with pagination actions to set pagination's active index
+   * @param {string}: action action's type
+   */
   handlePagination(action: string) {
     action == "prev" ? (this.activeIndex -= 1) : (this.activeIndex += 1);
+    action == "prev-first"
+      ? (this.activeIndex = 0)
+      : action == "next-last"
+      ? (this.activeIndex = this.paginationSize - 1)
+      : "";
+  }
+
+  /**
+   * @description Computed getter for filtered products' list
+   * @return {any[]}: products
+   */
+  get productsForList(): any {
+    const products = this.productsData.slice(
+      this.activeIndex * this.perPage,
+      (this.activeIndex + 1) * this.perPage
+    );
+
+    this.paginationSize = this.productsData.length / this.perPage;
+    return products;
   }
 }
 </script>
