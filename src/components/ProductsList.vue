@@ -1,13 +1,10 @@
 <template>
   <div id="app">
+    <SearchBar @searchKeyChange="searchIt" />
     <div class="container">
       <p class="total-indicator">
         Shown:
-        <span>{{
-          this.activeIndex == 0
-            ? 1 * this.perPage
-            : (this.activeIndex + 1) * this.perPage
-        }}</span
+        <span>{{ listSize }}</span
         >/{{ productsData.length }}
       </p>
       <Product
@@ -18,6 +15,7 @@
       />
     </div>
     <Paginator
+      v-if="productsData.length > 10"
       :pagination-size="paginationSize"
       @paginationChange="updateValue"
     />
@@ -29,10 +27,12 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { getProducts } from "../repos/ProductsRepo";
 import Product from "./Product.vue";
 import Paginator from "./Paginator.vue";
+import SearchBar from "./SearchBar.vue";
 @Component({
   components: {
     Product,
     Paginator,
+    SearchBar,
   },
 })
 export default class ProductsList extends Vue {
@@ -40,10 +40,11 @@ export default class ProductsList extends Vue {
 
   isRed = false;
   productsData: any = [];
+  productsDataCopy: any = [];
   activeIndex = 0;
   paginationSize = 0;
   perPage = 10;
-
+  listSize = 0;
   /**
    * @description Created lifecycle hook
    */
@@ -58,6 +59,7 @@ export default class ProductsList extends Vue {
     try {
       const response = await getProducts();
       this.productsData = response.data.products;
+      this.productsDataCopy = this.productsData;
     } catch (error) {
       console.error(error);
     }
@@ -69,6 +71,17 @@ export default class ProductsList extends Vue {
   updateValue(activeIndex: any) {
     this.activeIndex = activeIndex;
     this.scrollTop();
+  }
+
+  searchIt(key: string) {
+    let array: any = Object.assign([], this.productsDataCopy);
+    if (key.length > 1) {
+      this.productsData = array.filter((item: any) =>
+        item.title.toLowerCase().includes(key.toLowerCase())
+      );
+    } else {
+      this.productsData = Object.assign([], this.productsDataCopy);
+    }
   }
 
   /**
@@ -102,7 +115,11 @@ export default class ProductsList extends Vue {
       (this.activeIndex + 1) * this.perPage
     );
 
-    this.paginationSize = this.productsData.length / this.perPage;
+    this.paginationSize =
+      this.productsData.length > 10
+        ? Math.round(this.productsData.length / this.perPage)
+        : this.productsData.length;
+    this.listSize = products.length;
     return products;
   }
 }
