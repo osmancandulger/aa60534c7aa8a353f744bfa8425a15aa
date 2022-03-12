@@ -4,8 +4,10 @@
       <img class="product__img" :src="data.image.src" :alt="data.title" />
       <div class="desc-section">
         <div class="product-descriptions">
-          <p class="product__title">{{ data.title }}</p>
-          <p class="product__price">{{ data.variants[0].price }}</p>
+          <p class="product__title">{{ data.title || "No Title Available" }}</p>
+          <p class="product__price">
+            {{ data.variants[0].price || "No Price Available" }}
+          </p>
         </div>
         <div class="action-section">
           <div class="detail-icon"><span>i</span></div>
@@ -28,19 +30,23 @@ export default class ProductsList extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .item {
-  border: 2px solid rgb(138, 138, 138);
-  border-radius: 10px;
+  // border: 2px solid #457b9d;
+  border-radius: 15px;
   width: 300px;
   height: 400px;
   list-style: none;
   overflow: hidden;
+  box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
   .product__img {
     width: 100%;
     height: 75%;
   }
   .product__title {
-    font-size: 20px;
+    // font-size: 20px;
+    inline-size: 170px;
+    font-size: calc(0.55em + 1vmin);
     font-weight: 400;
+    text-align: left;
   }
   .product__price {
     font-weight: 800;
