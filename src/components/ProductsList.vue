@@ -1,6 +1,15 @@
 <template>
   <div id="app">
     <div class="container">
+      <p class="total-indicator">
+        Shown:
+        <span>{{
+          this.activeIndex == 0
+            ? 1 * this.perPage
+            : (this.activeIndex + 1) * this.perPage
+        }}</span
+        >/{{ productsData.length }}
+      </p>
       <Product
         class="product"
         v-for="item in productsForList"
@@ -12,57 +21,6 @@
       :pagination-size="paginationSize"
       @paginationChange="updateValue"
     />
-    <!-- <div class="pagination-container">
-      <button
-        class="pagination-prev"
-        :class="activeIndex == 0 ? 'pagination-arrow-disabled' : ''"
-        role="button"
-        @click="activeIndex > 0 ? handlePagination('prev-first') : ''"
-      >
-        &#60;&#60;
-      </button>
-      <button
-        class="pagination-prev"
-        :class="activeIndex == 0 ? 'pagination-arrow-disabled' : ''"
-        role="button"
-        @click="activeIndex > 0 ? handlePagination('prev') : ''"
-      >
-        &#60;
-      </button>
-      <li
-        v-for="(item, index) in paginationSize"
-        :key="index"
-        class="pagination-item"
-        :class="index == activeIndex ? 'pagination-active' : ''"
-        @click="activeIndex = index"
-      >
-        {{ item }}
-      </li>
-      <button
-        class="pagination-next"
-        :class="
-          activeIndex == paginationSize - 1 ? 'pagination-arrow-disabled' : ''
-        "
-        role="button"
-        @click="
-          activeIndex < paginationSize - 1 ? handlePagination('next') : ''
-        "
-      >
-        &#62;
-      </button>
-      <button
-        class="pagination-next"
-        :class="
-          activeIndex == paginationSize - 1 ? 'pagination-arrow-disabled' : ''
-        "
-        role="button"
-        @click="
-          activeIndex < paginationSize - 1 ? handlePagination('next-last') : ''
-        "
-      >
-        &#62;&#62;
-      </button>
-    </div> -->
   </div>
 </template>
 
@@ -155,5 +113,13 @@ li {
 }
 a {
   color: #42b983;
+}
+.total-indicator {
+  position: absolute;
+  right: 5%;
+  top: 2%;
+  span {
+    font-weight: 800;
+  }
 }
 </style>
