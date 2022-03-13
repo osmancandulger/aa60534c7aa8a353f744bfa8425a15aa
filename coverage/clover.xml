@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1647190879422" clover="3.2.0">
-  <project timestamp="1647190879423" name="All files">
-    <metrics statements="78" coveredstatements="67" conditionals="25" coveredconditionals="20" methods="21" coveredmethods="16" elements="124" coveredelements="103" complexity="0" loc="78" ncloc="78" packages="3" files="6" classes="6"/>
+<coverage generated="1647191562861" clover="3.2.0">
+  <project timestamp="1647191562862" name="All files">
+    <metrics statements="78" coveredstatements="69" conditionals="25" coveredconditionals="20" methods="21" coveredmethods="17" elements="124" coveredelements="106" complexity="0" loc="78" ncloc="78" packages="3" files="6" classes="6"/>
     <package name="components">
-      <metrics statements="73" coveredstatements="62" conditionals="25" coveredconditionals="20" methods="20" coveredmethods="15"/>
+      <metrics statements="73" coveredstatements="64" conditionals="25" coveredconditionals="20" methods="20" coveredmethods="16"/>
       <file name="Paginator.vue" path="/Users/foreks/Desktop/react-examples/app/src/components/Paginator.vue">
-        <metrics statements="13" coveredstatements="11" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="3"/>
-        <line num="1" count="22" type="cond" truecount="2" falsecount="0"/>
+        <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
+        <line num="1" count="30" type="cond" truecount="2" falsecount="0"/>
         <line num="61" count="2" type="stmt"/>
         <line num="64" count="4" type="stmt"/>
         <line num="65" count="2" type="stmt"/>
@@ -15,10 +15,10 @@
         <line num="74" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="75" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="80" count="4" type="stmt"/>
-        <line num="87" count="4" type="stmt"/>
+        <line num="87" count="6" type="stmt"/>
         <line num="91" count="2" type="stmt"/>
-        <line num="92" count="0" type="stmt"/>
-        <line num="93" count="0" type="stmt"/>
+        <line num="92" count="2" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
       </file>
       <file name="Product.vue" path="/Users/foreks/Desktop/react-examples/app/src/components/Product.vue">
         <metrics statements="8" coveredstatements="8" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>

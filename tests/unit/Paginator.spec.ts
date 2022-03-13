@@ -36,4 +36,10 @@ describe("Paginator.vue", () => {
         .paginationChange[wrapper.emitted().paginationChange.length - 1].at(0)
     ).toBe(instance.activeIndex);
   });
+
+  it("Check Watcher Function", async () => {
+    instance.isFlush = true;
+    instance.watchFlush.call(wrapper.vm, instance.isFlush);
+    expect(instance.activeIndex).toBe(0);
+  });
 });
