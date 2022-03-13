@@ -1,4 +1,5 @@
-# app
+# Products
+![screenshot](https://user-images.githubusercontent.com/59533680/158072861-c0251405-bf99-40de-863d-4084747c08a4.gif)
 
 ## Project setup
 ```
