@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1647191562861" clover="3.2.0">
-  <project timestamp="1647191562862" name="All files">
-    <metrics statements="78" coveredstatements="69" conditionals="25" coveredconditionals="20" methods="21" coveredmethods="17" elements="124" coveredelements="106" complexity="0" loc="78" ncloc="78" packages="3" files="6" classes="6"/>
+<coverage generated="1647192957349" clover="3.2.0">
+  <project timestamp="1647192957349" name="All files">
+    <metrics statements="79" coveredstatements="70" conditionals="25" coveredconditionals="20" methods="21" coveredmethods="17" elements="125" coveredelements="107" complexity="0" loc="79" ncloc="79" packages="3" files="6" classes="6"/>
     <package name="components">
-      <metrics statements="73" coveredstatements="64" conditionals="25" coveredconditionals="20" methods="20" coveredmethods="16"/>
+      <metrics statements="74" coveredstatements="65" conditionals="25" coveredconditionals="20" methods="20" coveredmethods="16"/>
       <file name="Paginator.vue" path="/Users/foreks/Desktop/react-examples/app/src/components/Paginator.vue">
         <metrics statements="13" coveredstatements="13" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="4"/>
         <line num="1" count="30" type="cond" truecount="2" falsecount="0"/>
@@ -32,7 +32,7 @@
         <line num="118" count="3" type="cond" truecount="2" falsecount="0"/>
       </file>
       <file name="ProductsList.vue" path="/Users/foreks/Desktop/react-examples/app/src/components/ProductsList.vue">
-        <metrics statements="47" coveredstatements="38" conditionals="12" coveredconditionals="8" methods="12" coveredmethods="8"/>
+        <metrics statements="48" coveredstatements="39" conditionals="12" coveredconditionals="8" methods="12" coveredmethods="8"/>
         <line num="1" count="12" type="cond" truecount="2" falsecount="0"/>
         <line num="47" count="1" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
@@ -68,18 +68,19 @@
         <line num="117" count="1" type="stmt"/>
         <line num="118" count="1" type="stmt"/>
         <line num="127" count="1" type="stmt"/>
-        <line num="129" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="130" count="1" type="stmt"/>
-        <line num="134" count="0" type="stmt"/>
-        <line num="142" count="2" type="stmt"/>
+        <line num="128" count="1" type="stmt"/>
+        <line num="130" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="131" count="1" type="stmt"/>
+        <line num="135" count="0" type="stmt"/>
         <line num="143" count="2" type="stmt"/>
         <line num="144" count="2" type="stmt"/>
-        <line num="152" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="153" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="165" count="0" type="stmt"/>
-        <line num="170" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="174" count="0" type="stmt"/>
+        <line num="145" count="2" type="stmt"/>
+        <line num="153" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="154" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="166" count="0" type="stmt"/>
+        <line num="171" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="175" count="0" type="stmt"/>
+        <line num="176" count="0" type="stmt"/>
       </file>
       <file name="SearchBar.vue" path="/Users/foreks/Desktop/react-examples/app/src/components/SearchBar.vue">
         <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="2"/>
