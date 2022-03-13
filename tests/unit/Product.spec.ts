@@ -2,7 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import Product from "@/components/Product.vue";
 let wrapper: any;
 let instance: any;
-const object = {
+const productData: any = {
   id: 7550805770459,
   title: "Aera",
   body_html:
@@ -141,8 +141,8 @@ beforeAll(async () => {
 
 describe("Product.vue", () => {
   it("Checks prop", async () => {
-    await wrapper.setProps({ data: object });
-    expect(instance.data).toBe(object);
+    await wrapper.setProps({ data: productData });
+    expect(instance.data).toBe(productData);
   });
   it("Checks html texts & source by response object", async () => {
     const detailIcon = await wrapper.find(".detail-icon");
@@ -151,26 +151,26 @@ describe("Product.vue", () => {
     const productImg = await wrapper.find(".product__img");
     const productPrice = await wrapper.find(".product__price");
 
-    expect(productTitle.text()).toBe(object.title);
-    expect(productImg.attributes("src")).toBe(object.image.src);
-    expect(productPrice.text()).toBe(object.variants[0].price);
+    expect(productTitle.text()).toBe(productData.title);
+    expect(productImg.attributes("src")).toBe(productData.image.src);
+    expect(productPrice.text()).toBe(productData.variants[0].price);
     const productShipping = await wrapper.find(".product__shipping");
     const productWeight = await wrapper.find(".product__weight");
     const productTaxable = await wrapper.find(".product__taxable");
     const productVendor = await wrapper.find(".product__vendor");
 
     expect(productShipping.text()).toBe(
-      `Requires Shipping: ${object.variants[0].taxable ? "Yes" : "No"}`
+      `Requires Shipping: ${productData.variants[0].taxable ? "Yes" : "No"}`
     );
     expect(productTaxable.text()).toBe(
-      `Taxable: ${object.variants[0].taxable ? "Yes" : "No"}`
+      `Taxable: ${productData.variants[0].taxable ? "Yes" : "No"}`
     );
     expect(productWeight.text()).toBe(
-      `Weight: ${object.variants[0].weight.toFixed(3)}${
-        object.variants[0].weight_unit
+      `Weight: ${productData.variants[0].weight.toFixed(3)}${
+        productData.variants[0].weight_unit
       }`
     );
-    expect(productVendor.text()).toBe(`Vendor: ${object.vendor}`);
+    expect(productVendor.text()).toBe(`Vendor: ${productData.vendor}`);
   });
   it("Sets img carousel index & img source", async () => {
     instance.activeIndex = 5;
@@ -181,7 +181,7 @@ describe("Product.vue", () => {
     await instance.handleCarousel("next");
     const productImg = await wrapper.find(".product__img");
     expect(productImg.attributes("src")).toBe(
-      object.images[instance.activeIndex].src
+      productData.images[instance.activeIndex].src
     );
   });
 });
