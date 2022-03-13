@@ -219,13 +219,18 @@ a {
   width: 8%;
   right: 15%;
   top: 1.5%;
-  @media screen and (max-width: 1200px) {
-    right: 20%;
-  }
   @media screen and (max-width: 767px) {
+    right: 5%;
+    top: -27px;
+    width: 15%;
+  }
+  @media screen and (min-width: 767px) and (max-width: 1200px) {
     right: 2%;
     top: -27px;
     width: 15%;
+  }
+  @media screen and (min-width: 1200px) and (max-width: 1500px) {
+    right: 20%;
   }
 }
 .no-content {
