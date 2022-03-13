@@ -1,4 +1,4 @@
-import { shallowMount, mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Product from "@/components/Product.vue";
 let wrapper: any;
 let instance: any;
@@ -140,11 +140,11 @@ beforeAll(async () => {
 });
 
 describe("Product.vue", () => {
-  it("Check prop", async () => {
+  it("Checks prop", async () => {
     await wrapper.setProps({ data: object });
     expect(instance.data).toBe(object);
   });
-  it("Check html texts & source by response object", async () => {
+  it("Checks html texts & source by response object", async () => {
     const detailIcon = await wrapper.find(".detail-icon");
     await detailIcon.trigger("click");
     const productTitle = await wrapper.find(".product__title");
@@ -172,7 +172,7 @@ describe("Product.vue", () => {
     );
     expect(productVendor.text()).toBe(`Vendor: ${object.vendor}`);
   });
-  it("Set img carousel index & img source", async () => {
+  it("Sets img carousel index & img source", async () => {
     instance.activeIndex = 5;
     instance.handleCarousel("prev");
     expect(instance.activeIndex).toBe(4);

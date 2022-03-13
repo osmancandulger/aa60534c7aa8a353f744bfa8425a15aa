@@ -1,4 +1,4 @@
-import { shallowMount, mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import ProductsList from "@/components/ProductsList.vue";
 let wrapper: any;
 let instance: any;
@@ -271,13 +271,7 @@ const dataList = [
   },
 ];
 beforeAll(async () => {
-  wrapper = shallowMount(ProductsList, {
-    // data() {
-    //   return {
-    //     productsData: dataList,
-    //   };
-    // },
-  });
+  wrapper = shallowMount(ProductsList);
   instance = wrapper.vm;
 });
 
@@ -294,7 +288,7 @@ describe("ProductsList.vue", () => {
   it("Sets body scrollTop to 0 on page changes", async () => {
     expect(instance.scrollTop()).toBe(0);
   });
-  it("Filter products list by product type filter", async () => {
+  it("Filters products list by product type filter", async () => {
     instance.filterByType("Helmets");
     instance.productsData = dataList;
     expect(instance.productsData).toEqual(
@@ -303,7 +297,7 @@ describe("ProductsList.vue", () => {
       ])
     );
   });
-  it("Filter products list by search filter", async () => {
+  it("Filters products list by search filter", async () => {
     instance.searchIt("Aera");
     instance.productsData = dataList;
     expect(instance.productsData).toEqual(

@@ -1,10 +1,10 @@
-import { shallowMount, mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Paginator from "@/components/Paginator.vue";
 let wrapper: any;
 let instance: any;
 
 beforeAll(async () => {
-  wrapper = mount(Paginator, {
+  wrapper = shallowMount(Paginator, {
     propsData: {
       paginationSize: 5,
     },
@@ -13,10 +13,10 @@ beforeAll(async () => {
 });
 
 describe("Paginator.vue", () => {
-  it("Check prop", async () => {
+  it("Checks prop", async () => {
     expect(instance.paginationSize).toBe(5);
   });
-  it("Check pagination size & emitted value", async () => {
+  it("Checks pagination size & emitted value", async () => {
     instance.handlePagination("next-last");
     expect(instance.activeIndex).toEqual(instance.paginationSize - 1);
     instance.handlePagination("prev");
