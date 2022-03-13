@@ -309,5 +309,7 @@ describe("ProductsList.vue", () => {
     expect(instance.productsData).toEqual(
       expect.arrayContaining([expect.objectContaining({ title: "Aera" })])
     );
+    instance.searchIt("A");
+    expect(instance.isFlush).toBe(true);
   });
 });
