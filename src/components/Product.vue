@@ -134,9 +134,11 @@ export default class ProductsList extends Vue {
   overflow: hidden;
   box-shadow: 0px 0px 20px 0px rgb(0 0 0 / 20%);
   .product__img {
+    position: absolute;
     width: 100%;
     height: 90%;
     cursor: pointer;
+    z-index: -3;
   }
   .product__title {
     inline-size: 200px;
@@ -229,5 +231,13 @@ export default class ProductsList extends Vue {
 }
 .product__price {
   margin-top: -5px;
+}
+.carousel-next {
+  position: relative;
+  left: 230px;
+}
+.carousel-arrow-disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 </style>
