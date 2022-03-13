@@ -56,7 +56,6 @@
                 :key="index"
               >
                 <span class="detail-key"> {{ item.name }}:</span>
-                <!-- {{ data.options[0].values[0] || "No Size Available" }} -->
                 <span
                   class="product-detail-span"
                   v-for="(value, index) in item.values"
@@ -66,15 +65,15 @@
                 >
               </p>
             </template>
-            <p>
+            <p class="product__shipping">
               <span class="detail-key">Requires Shipping: </span
               >{{ data.variants[0].requires_shipping ? "Yes" : "No" }}
             </p>
-            <p>
+            <p class="product__taxable">
               <span class="detail-key">Taxable: </span
               >{{ data.variants[0].taxable ? "Yes" : "No" }}
             </p>
-            <p>
+            <p class="product__weight">
               <span class="detail-key">Weight: </span
               >{{
                 `${data.variants[0].weight.toFixed(3)}${
@@ -82,7 +81,7 @@
                 }`
               }}
             </p>
-            <p>
+            <p class="product__vendor">
               <span class="detail-key">Vendor: </span
               >{{ data.vendor || "Not Available" }}
             </p>

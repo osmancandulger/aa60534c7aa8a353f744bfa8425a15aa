@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>6/8</span>
             </div>
         
             
@@ -305,8 +305,7 @@
 <a name='L240'></a><a href='#L240'>240</a>
 <a name='L241'></a><a href='#L241'>241</a>
 <a name='L242'></a><a href='#L242'>242</a>
-<a name='L243'></a><a href='#L243'>243</a>
-<a name='L244'></a><a href='#L244'>244</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L243'></a><a href='#L243'>243</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -408,16 +407,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -549,7 +547,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="fstat-no" title="function not covered" >&lt;template&gt;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
   &lt;div id="app"&gt;
     &lt;li class="item" v-if="data"&gt;
       &lt;div class="img-wrapper"&gt;
@@ -607,7 +605,6 @@
                 :key="index"
               &gt;
                 &lt;span class="detail-key"&gt; {{ item.name }}:&lt;/span&gt;
-                &lt;!-- {{ data.options[0].values[0] || "No Size Available" }} --&gt;
                 &lt;span
                   class="product-detail-span"
                   v-for="(value, index) in item.values"
@@ -617,15 +614,15 @@
                 &gt;
               &lt;/p&gt;
             &lt;/template&gt;
-            &lt;p&gt;
+            &lt;p class="product__shipping"&gt;
               &lt;span class="detail-key"&gt;Requires Shipping: &lt;/span
               &gt;{{ data.variants[0].requires_shipping ? "Yes" : "No" }}
             &lt;/p&gt;
-            &lt;p&gt;
+            &lt;p class="product__taxable"&gt;
               &lt;span class="detail-key"&gt;Taxable: &lt;/span
               &gt;{{ data.variants[0].taxable ? "Yes" : "No" }}
             &lt;/p&gt;
-            &lt;p&gt;
+            &lt;p class="product__weight"&gt;
               &lt;span class="detail-key"&gt;Weight: &lt;/span
               &gt;{{
                 `${data.variants[0].weight.toFixed(3)}${
@@ -633,7 +630,7 @@
                 }`
               }}
             &lt;/p&gt;
-            &lt;p&gt;
+            &lt;p class="product__vendor"&gt;
               &lt;span class="detail-key"&gt;Vendor: &lt;/span
               &gt;{{ data.vendor || "Not Available" }}
             &lt;/p&gt;
@@ -659,8 +656,8 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class ProductsList extends Vue {
   @Prop() private data!: any;
-<span class="cstat-no" title="statement not covered" >  activeIndex = 0;</span>
-<span class="cstat-no" title="statement not covered" >  isDetailOpen = false;</span>
+  activeIndex = 0;
+  isDetailOpen = false;
   /**
    * @descriptions Handle with pagination actions to set pagination's active index
    * @param {string}: action action's type
@@ -799,7 +796,7 @@ export default class ProductsList extends Vue {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Mar 13 2022 16:28:37 GMT+0300 (GMT+03:00)
+                at Sun Mar 13 2022 19:34:51 GMT+0300 (GMT+03:00)
             </div>
         <script src="../prettify.js"></script>
         <script>
