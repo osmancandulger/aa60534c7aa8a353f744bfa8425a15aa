@@ -2,6 +2,13 @@
   <div id="app">
     <SearchBar @searchKeyChange="searchIt" />
     <div class="container">
+      <select id="types" v-model="selectedType" @change="filterByType()">
+        <option value="All" selected>All</option>
+        <option v-for="(type, index) in typesList" :key="index" :value="type">
+          {{ type }}
+        </option>
+      </select>
+
       <p class="total-indicator">
         Shown:
         <span>{{ listSize }}</span
@@ -46,18 +53,19 @@ import SearchBar from "./SearchBar.vue";
   },
 })
 export default class ProductsList extends Vue {
-  // @Prop() private msg!: string;
+  /* eslint-disable @typescript-eslint/no-inferrable-types */
 
-  isRed = false;
   productsData: any = [];
   productsDataCopy: any = [];
+  typesList: any[] = [];
   activeIndex = 0;
   paginationSize = 0;
-  perPage = 10;
-  listSize = 0;
-  isLoading = true;
-  noContent = false;
-  isFlush = false;
+  perPage: number = 10;
+  listSize: number = 0;
+  isLoading: boolean = true;
+  noContent: boolean = false;
+  isFlush: boolean = false;
+  selectedType: string = "All";
   /**
    * @description Created lifecycle hook
    */
@@ -73,6 +81,9 @@ export default class ProductsList extends Vue {
       const response = await getProducts();
       this.productsData = response.data.products;
       this.productsDataCopy = this.productsData;
+      this.typesList = [
+        ...new Set(this.productsDataCopy.map((item: any) => item.product_type)),
+      ];
       this.isLoading = false;
     } catch (error) {
       this.noContent = true;
@@ -96,6 +107,18 @@ export default class ProductsList extends Vue {
       );
     } else {
       this.isFlush = !this.isFlush;
+      this.productsData = Object.assign([], this.productsDataCopy);
+    }
+  }
+
+  filterByType() {
+    let array: any = Object.assign([], this.productsDataCopy);
+
+    if (this.selectedType != "All") {
+      this.productsData = array.filter(
+        (item: any) => item.product_type == this.selectedType
+      );
+    } else {
       this.productsData = Object.assign([], this.productsDataCopy);
     }
   }
@@ -175,6 +198,20 @@ a {
 
   span {
     font-weight: 800;
+  }
+}
+#types {
+  position: absolute;
+  width: 8%;
+  right: 15%;
+  top: 1.5%;
+  @media screen and (max-width: 1200px) {
+    right: 20%;
+  }
+  @media screen and (max-width: 767px) {
+    right: 2%;
+    top: -27px;
+    width: 15%;
   }
 }
 .no-content {
