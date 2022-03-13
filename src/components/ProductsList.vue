@@ -124,6 +124,7 @@ export default class ProductsList extends Vue {
    * @param {type}:string
    */
   filterByType(type: string) {
+    this.handlePagination("prev-first");
     let array: any = Object.assign([], this.productsDataCopy);
 
     if (type != "All") {
