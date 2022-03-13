@@ -66,6 +66,26 @@
                 >
               </p>
             </template>
+            <p>
+              <span class="detail-key">Requires Shipping: </span
+              >{{ data.variants[0].requires_shipping ? "Yes" : "No" }}
+            </p>
+            <p>
+              <span class="detail-key">Taxable: </span
+              >{{ data.variants[0].taxable ? "Yes" : "No" }}
+            </p>
+            <p>
+              <span class="detail-key">Weight: </span
+              >{{
+                `${data.variants[0].weight.toFixed(3)}${
+                  data.variants[0].weight_unit
+                }`
+              }}
+            </p>
+            <p>
+              <span class="detail-key">Vendor: </span
+              >{{ data.vendor || "Not Available" }}
+            </p>
           </template>
         </div>
         <div :class="!isDetailOpen ? 'action-section' : ''">
@@ -76,7 +96,6 @@
           >
             <span>{{ isDetailOpen ? "X" : "i" }}</span>
           </div>
-          <!-- <span>See details!</span> -->
         </div>
       </div>
     </li>
