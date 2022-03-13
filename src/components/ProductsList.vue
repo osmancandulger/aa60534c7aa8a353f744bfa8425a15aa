@@ -103,6 +103,10 @@ export default class ProductsList extends Vue {
     this.scrollTop();
   }
 
+  /**
+   * @description Filter data by search key
+   * @param {string}:key
+   */
   searchIt(key: string) {
     let array: any = Object.assign([], this.productsDataCopy);
     if (key.length > 1) {
@@ -115,6 +119,10 @@ export default class ProductsList extends Vue {
     }
   }
 
+  /**
+   * @description Filter data by product type
+   * @param {type}:string
+   */
   filterByType(type: string) {
     let array: any = Object.assign([], this.productsDataCopy);
 

@@ -79,6 +79,10 @@ export default class ProductsList extends Vue {
       : "";
     this.emitter();
   }
+
+  /**
+   * @description Fire emit event on page changes
+   */
   emitter() {
     this.$emit("paginationChange", this.activeIndex);
   }

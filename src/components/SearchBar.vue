@@ -18,6 +18,9 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class ProductsList extends Vue {
   searchKey = "";
 
+  /**
+   * @description Fire emit event when input change
+   */
   emitter() {
     this.$emit("searchKeyChange", this.searchKey);
   }
