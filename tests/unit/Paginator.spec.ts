@@ -38,7 +38,7 @@ describe("Paginator.vue", () => {
   });
 
   it("Check Watcher Function", async () => {
-    instance.isFlush = true;
+    await wrapper.setProps({ isFlush: true });
     instance.watchFlush.call(wrapper.vm, instance.isFlush);
     expect(instance.activeIndex).toBe(0);
   });
