@@ -71,7 +71,11 @@ export default class ProductsList extends Vue {
    * @param {string}: action action's type
    */
   handlePagination(action: string) {
-    action == "prev" ? (this.activeIndex -= 1) : (this.activeIndex += 1);
+    action == "prev"
+      ? (this.activeIndex -= 1)
+      : action == "next"
+      ? (this.activeIndex += 1)
+      : "";
     action == "prev-first"
       ? (this.activeIndex = 0)
       : action == "next-last"
