@@ -10,7 +10,7 @@
     "serve": "vue-cli-service serve",
     "start": "npx ts-node src/api/index.ts",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --watch",
     "lint": "vue-cli-service lint",
     "production": "vue-cli-service build --mode production"
   },

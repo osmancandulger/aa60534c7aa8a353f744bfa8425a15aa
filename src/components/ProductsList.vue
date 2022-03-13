@@ -2,7 +2,11 @@
   <div id="app">
     <SearchBar @searchKeyChange="searchIt" />
     <div class="container">
-      <select id="types" v-model="selectedType" @change="filterByType()">
+      <select
+        id="types"
+        v-model="selectedType"
+        @change="filterByType(selectedType)"
+      >
         <option value="All" selected>All</option>
         <option v-for="(type, index) in typesList" :key="index" :value="type">
           {{ type }}
@@ -111,12 +115,12 @@ export default class ProductsList extends Vue {
     }
   }
 
-  filterByType() {
+  filterByType(type: string) {
     let array: any = Object.assign([], this.productsDataCopy);
 
-    if (this.selectedType != "All") {
+    if (type != "All") {
       this.productsData = array.filter(
-        (item: any) => item.product_type == this.selectedType
+        (item: any) => item.product_type == type
       );
     } else {
       this.productsData = Object.assign([], this.productsDataCopy);
@@ -129,6 +133,7 @@ export default class ProductsList extends Vue {
   scrollTop() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    return 0;
   }
 
   /**
