@@ -106,10 +106,8 @@ export default class ProductsList extends Vue {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .item {
-  // border: 2px solid #457b9d;
   border-radius: 15px;
   width: 300px;
   height: 400px;
@@ -122,9 +120,9 @@ export default class ProductsList extends Vue {
     cursor: pointer;
   }
   .product__title {
-    // font-size: 20px;
-    inline-size: 170px;
+    inline-size: 200px;
     font-size: calc(0.55em + 1vmin);
+    max-height: 41px;
     font-weight: 400;
     text-align: left;
     &::before {
@@ -151,14 +149,14 @@ export default class ProductsList extends Vue {
       color: #f1faee;
     }
     .action-section {
-      padding: 30px 33px;
+      padding: 30px 17px;
     }
   }
   .product-descriptions {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px 15px;
+    padding: 15px 15px;
     flex: 1;
   }
   .detail-icon {
@@ -197,9 +195,7 @@ export default class ProductsList extends Vue {
 .detail-active {
   transform: translateY(-300px);
 }
-// .product-detail-text {
-//   display: flex;
-// }
+
 .product-detail-span {
   position: relative;
 }
@@ -211,5 +207,8 @@ export default class ProductsList extends Vue {
 }
 .detail-key {
   font-weight: 800;
+}
+.product__price {
+  margin-top: -5px;
 }
 </style>

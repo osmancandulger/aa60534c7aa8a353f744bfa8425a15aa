@@ -95,6 +95,7 @@ export default class ProductsList extends Vue {
 <style scoped lang="scss">
 .pagination-container {
   margin-top: 10px;
+  cursor: pointer;
   li:hover {
     color: rgba(0, 0, 0, 0.349);
   }
@@ -102,9 +103,7 @@ export default class ProductsList extends Vue {
     border: none;
     border-radius: 15px;
   }
-  .pagination-prev {
-  }
-  cursor: pointer;
+
   .pagination-active {
     font-weight: 800;
     transition: transform 0.3s ease;

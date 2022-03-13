@@ -144,9 +144,6 @@ export default class ProductsList extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .container {
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
   position: relative;
   width: 100%;
   grid-template-columns: repeat(auto-fit, minmax(301px, 1fr));
