@@ -11,6 +11,7 @@
     "start": "npx ts-node src/api/index.ts",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit --watch",
+    "test:coverage": "npx jest --coverage",
     "lint": "vue-cli-service lint",
     "production": "vue-cli-service build --mode production"
   },
