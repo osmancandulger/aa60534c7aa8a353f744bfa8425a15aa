@@ -219,6 +219,8 @@ a {
   width: 8%;
   right: 15%;
   top: 1.5%;
+  border-radius: 10px;
+  outline: none;
   @media screen and (max-width: 767px) {
     right: 5%;
     top: -27px;
