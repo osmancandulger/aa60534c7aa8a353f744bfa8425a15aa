@@ -94,31 +94,44 @@ const object = {
   ],
   images: [
     {
-      id: 36706917843163,
-      product_id: 7550805770459,
+      id: 36706882289883,
+      product_id: 7550801543387,
       position: 1,
-      created_at: "2022-02-23T16:17:16+03:00",
-      updated_at: "2022-02-23T16:17:16+03:00",
+      created_at: "2022-02-23T16:14:49+03:00",
+      updated_at: "2022-02-23T16:14:49+03:00",
       alt: null,
-      width: 679,
-      height: 720,
-      src: "https://cdn.shopify.com/s/files/1/0631/9122/0443/products/13301101178_1_679x720_72_RGB.jpg?v=1645622236",
-      variant_ids: [42509627588827, 42509627621595],
-      admin_graphql_api_id: "gid://shopify/ProductImage/36706917843163",
+      width: 480,
+      height: 480,
+      src: "https://cdn.shopify.com/s/files/1/0631/9122/0443/products/amy2beanie_white.jpg?v=1645622089",
+      variant_ids: [42509605208283],
+      admin_graphql_api_id: "gid://shopify/ProductImage/36706882289883",
+    },
+    {
+      id: 36706882322651,
+      product_id: 7550801543387,
+      position: 2,
+      created_at: "2022-02-23T16:14:49+03:00",
+      updated_at: "2022-02-23T16:14:49+03:00",
+      alt: null,
+      width: 480,
+      height: 480,
+      src: "https://cdn.shopify.com/s/files/1/0631/9122/0443/products/Amy_Black.jpg?v=1645622089",
+      variant_ids: [42509605241051],
+      admin_graphql_api_id: "gid://shopify/ProductImage/36706882322651",
     },
   ],
   image: {
-    id: 36706917843163,
-    product_id: 7550805770459,
+    id: 36706882289883,
+    product_id: 7550801543387,
     position: 1,
-    created_at: "2022-02-23T16:17:16+03:00",
-    updated_at: "2022-02-23T16:17:16+03:00",
+    created_at: "2022-02-23T16:14:49+03:00",
+    updated_at: "2022-02-23T16:14:49+03:00",
     alt: null,
-    width: 679,
-    height: 720,
-    src: "https://cdn.shopify.com/s/files/1/0631/9122/0443/products/13301101178_1_679x720_72_RGB.jpg?v=1645622236",
-    variant_ids: [42509627588827, 42509627621595],
-    admin_graphql_api_id: "gid://shopify/ProductImage/36706917843163",
+    width: 480,
+    height: 480,
+    src: "https://cdn.shopify.com/s/files/1/0631/9122/0443/products/amy2beanie_white.jpg?v=1645622089",
+    variant_ids: [42509605208283],
+    admin_graphql_api_id: "gid://shopify/ProductImage/36706882289883",
   },
 };
 beforeAll(async () => {
@@ -158,5 +171,17 @@ describe("Product.vue", () => {
       }`
     );
     expect(productVendor.text()).toBe(`Vendor: ${object.vendor}`);
+  });
+  it("Set img carousel index & img source", async () => {
+    instance.activeIndex = 5;
+    instance.handleCarousel("prev");
+    expect(instance.activeIndex).toBe(4);
+    instance.handleCarousel("prev-first");
+    expect(instance.activeIndex).toBe(0);
+    await instance.handleCarousel("next");
+    const productImg = await wrapper.find(".product__img");
+    expect(productImg.attributes("src")).toBe(
+      object.images[instance.activeIndex].src
+    );
   });
 });
