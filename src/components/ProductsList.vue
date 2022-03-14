@@ -35,7 +35,6 @@
       </template>
     </div>
     <Paginator
-      v-if="productsData.length > 10"
       :pagination-size="paginationSize"
       :isFlush="isFlush"
       @paginationChange="updateValue"
@@ -124,9 +123,8 @@ export default class ProductsList extends Vue {
    * @param {type}:string
    */
   filterByType(type: string) {
-    this.isFlush = false;
     setTimeout(() => {
-      this.isFlush = true;
+      this.isFlush ? (this.isFlush = false) : (this.isFlush = true);
     }, 50);
     let array: any = Object.assign([], this.productsDataCopy);
 
@@ -170,11 +168,14 @@ export default class ProductsList extends Vue {
       this.activeIndex * this.perPage,
       (this.activeIndex + 1) * this.perPage
     );
-
-    this.paginationSize =
-      this.productsData.length > 10
-        ? Math.round(this.productsData.length / this.perPage)
-        : this.productsData.length;
+    if (this.productsData.length > 10) {
+      this.paginationSize =
+        this.productsData.length > 10
+          ? Math.round(this.productsData.length / this.perPage)
+          : this.productsData.length;
+    } else {
+      this.paginationSize = 1;
+    }
     this.listSize = products.length;
     return products;
   }
