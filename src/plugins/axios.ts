@@ -3,7 +3,7 @@ import axios from "axios";
 import mainApp from "@/helpers/mainApp";
 
 const axiosInstance = axios.create({
-  baseURL: "",
+  baseURL: "https://teknasyon.netlify.app/.netlify/functions/products",
 });
 mainApp.$HttpService = axiosInstance;
 
